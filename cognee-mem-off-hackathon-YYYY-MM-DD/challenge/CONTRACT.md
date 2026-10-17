@@ -31,6 +31,10 @@ denominator is Claude Code's hook lifecycle, so that is the contract.
 5. **The `cognee-report` skill installed** (it comes with the cognee plugin). Its `outcomes`
    adapter protocol drives every entrant; its receipts and scorecard are part of the
    submission. See `PROTOCOL.md`.
+6. **The `memoff-memory-report` skill installed** in your repo
+   (`skills/memoff-memory-report/install.sh --event … --team …`). It produces
+   `report/memoff-report.md` and `.json` from tool output; both are required in the
+   submission and are read next to the Action's `results/`.
 
 ## Environment the runner gives you
 

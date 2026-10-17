@@ -9,6 +9,8 @@ submissions/<team-slug>/
   install.sh  wipe.sh  wait.sh       # Track 1: required scripts (+ optional wipe_check.sh, preindex.sh, receipt.sh, usage.sh)
   plugin/                            # Track 1, optional: a bundled Claude Code plugin (named in memory.yml plugin_dirs)
   issues/09-<slug>/ISSUE_PROPOSAL.md # Track 2: one folder per proposal (+ optional grader_sketch.py, pilot-metrics.json)
+  report/memoff-report.md            # Track 1: written by the memoff-memory-report skill at wrap-up
+  report/memoff-report.json          #          (tool output only; submitted together with results/)
   results/                           # written by the GitHub Action after the organisers' run — never by hand
 ```
 
@@ -21,8 +23,10 @@ title>` for Track 2, or both joined with ` + `.
 
 - the PR touches only `submissions/<team-slug>/**`, one slug per PR;
 - `SUBMISSION.md` present with the headings `## Team`, `## Track`, `## What you entered`,
-  `## Reproduction`, `## Links`;
+  `## Memory report`, `## Reproduction`, `## Links`;
 - Track 1: `memory.yml` validates against the schema and `install` / `wipe` / `wait` exist;
+- Track 1: `report/memoff-report.md` and `report/memoff-report.json` exist, the JSON parses
+  and carries `type: memoff-memory-report`, and neither contains a secret;
 - Track 2: each `ISSUE_PROPOSAL.md` has the seven sections and says `Depends on: Issue N`
   for an existing N;
 - no secrets, no `.env*` (not even `.env.example`), no `.DS_Store`, no file over 1 MB;
@@ -48,9 +52,24 @@ results/
   final.diff                 # the arm's final code against the baseline
 ```
 
-The action results and the observation-skill outputs are **submitted together**: a PR
-whose `results/` lacks `outcomes/` or `receipts/` is marked incomplete and does not enter
-the leaderboard until the organisers re-attach them.
+The action results and the observation-skill outputs are **submitted together**: your
+`report/` (from the `memoff-memory-report` skill) travels in the PR, the organisers' Action
+adds `results/` next to it, and a PR whose `results/` lacks `outcomes/` or `receipts/` is
+marked incomplete and does not enter the leaderboard until the organisers re-attach them.
+
+## The reporting skill
+
+`skills/memoff-memory-report/` follows the `cognee-hackathon-feedback` pattern (PR #53): one
+installer drops the skill and a `Stop`-event checkpoint hook into your repo, appends an
+instruction block to `AGENTS.md` / `CLAUDE.md`, and starts a clock. About every 15 minutes
+your coding agent updates `memoff-report.md` / `.json` from **tool output only**: harness run
+folders (`metrics.json`, `action-run.json`), the `cognee-report` scorecard
+(`plugin_eval.py report --format json`), recall receipts, and whether recalled items were
+actually used. At wrap-up it copies both files into `submissions/<team-slug>/report/`.
+
+```bash
+sh cognee-mem-off-hackathon-<date>/skills/memoff-memory-report/install.sh --event "Mem Off <date>" --team <team-slug>
+```
 
 ## Before you write yours
 

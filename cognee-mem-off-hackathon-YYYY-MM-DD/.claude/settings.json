@@ -10,6 +10,16 @@
             "statusMessage": "cognee feedback checkpoint"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PROJECT_DIR:-.}/.agents/skills/memoff-memory-report/hook.sh\"",
+            "timeout": 15,
+            "statusMessage": "memoff report checkpoint"
+          }
+        ]
       }
     ]
   }

@@ -89,7 +89,7 @@ def test_check_submission_rules(tmp_path):
     (hack / "challenge" / "issues" / "01-a.md").write_text("# Issue 1 — a")
     team = hack / "submissions" / "team-a"
     team.mkdir(parents=True)
-    (team / "SUBMISSION.md").write_text("## Team\n## Track\n## What you entered\n## Reproduction\n## Links\n")
+    (team / "SUBMISSION.md").write_text("## Team\n## Track\n## What you entered\n## Memory report\n## Reproduction\n## Links\n")
     (team / "issues" / "09-x").mkdir(parents=True)
     (team / "issues" / "09-x" / "ISSUE_PROPOSAL.md").write_text(
         "\n".join(check_submission.PROPOSAL_SECTIONS) + "\nDepends on: Issue 1\n"
@@ -119,3 +119,34 @@ def test_verify_module_entrypoint_runs_from_workspace(tmp_path, monkeypatch):
     data = json.loads((tmp_path / "v.json").read_text())
     assert rc == 1 and data["visible"]["failed"] == 0 and data["visible"]["target_failures"] == 6
     assert data["private"]["reason"].startswith("MEMOFF_PRIVATE_DIR unset")
+
+
+def test_check_report_requires_skill_output(tmp_path):
+    folder = tmp_path / "team-b"
+    folder.mkdir()
+    errors = check_submission.check_report(folder)
+    assert len(errors) == 2 and all("memoff-memory-report" in e for e in errors)
+    (folder / "report").mkdir()
+    (folder / "report" / "memoff-report.md").write_text("---\ntype: memoff-memory-report\n---\n# Summary\n")
+    (folder / "report" / "memoff-report.json").write_text(json.dumps({"type": "memoff-memory-report", "runs": []}))
+    assert check_submission.check_report(folder) == []
+    (folder / "report" / "memoff-report.json").write_text("{not json")
+    assert any("invalid JSON" in e for e in check_submission.check_report(folder))
+
+
+def test_report_skill_files_present_and_hook_is_silent_without_clock(tmp_path):
+    skill = HACK / "skills" / "memoff-memory-report"
+    assert (skill / "SKILL.md").is_file() and (skill / "install.sh").is_file()
+    env = dict(os.environ, MEMOFF_REPORT_STATE=str(tmp_path / "state"))
+    # first call starts the clock and says nothing; second call within the interval says nothing
+    for _ in range(2):
+        proc = subprocess.run(["sh", str(skill / "hook.sh")], input="{}", capture_output=True, text=True, cwd=tmp_path, env=env)
+        assert proc.returncode == 0 and proc.stdout.strip() == ""
+    # an expired clock produces a block decision carrying the checkpoint instruction
+    (tmp_path / "state").write_text("0")
+    proc = subprocess.run(["sh", str(skill / "hook.sh")], input="{}", capture_output=True, text=True, cwd=tmp_path, env=env)
+    out = json.loads(proc.stdout)
+    assert out["decision"] == "block" and "memoff-report checkpoint" in out["reason"]
+    # the loop guard
+    proc = subprocess.run(["sh", str(skill / "hook.sh")], input='{"stop_hook_active": true}', capture_output=True, text=True, cwd=tmp_path, env=env)
+    assert proc.stdout.strip() == ""

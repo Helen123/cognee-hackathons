@@ -10,7 +10,10 @@ Rules (README §Submissions):
   * no secrets, no ``.env*``, no OS junk, no binaries over 1 MB;
   * ``results/`` is written by the Action only: a PR that touches it by hand is flagged,
     and a present ``results/`` must be complete (metrics + outcomes + receipts) and not
-    produced by the smoke adapter.
+    produced by the smoke adapter;
+  * ``report/memoff-report.md`` and ``report/memoff-report.json`` (from the
+    ``memoff-memory-report`` skill) are required for Track 1 and must contain only tool
+    output: the JSON must parse and carry ``type: memoff-memory-report``.
 """
 
 from __future__ import annotations
@@ -24,7 +27,8 @@ import yaml
 
 from .manifest import validate_manifest
 
-REQUIRED_SUBMISSION_HEADINGS = ["## Team", "## Track", "## What you entered", "## Reproduction", "## Links"]
+REQUIRED_SUBMISSION_HEADINGS = ["## Team", "## Track", "## What you entered", "## Memory report", "## Reproduction", "## Links"]
+REPORT_FILES = ("report/memoff-report.md", "report/memoff-report.json")
 PROPOSAL_SECTIONS = [
     "## Issue text",
     "## Memory hypothesis",
@@ -83,6 +87,30 @@ def check(hackathon_dir: Path, files: list[str], repo: Path) -> list[str]:
     return errors
 
 
+def check_report(folder: Path) -> list[str]:
+    """The memoff-memory-report skill's two files: required for Track 1, submitted with results."""
+    errors = []
+    for rel in REPORT_FILES:
+        if not (folder / rel).is_file():
+            errors.append(f"{folder.name}/{rel}: missing — run the memoff-memory-report skill's wrap-up (it copies both files here)")
+    md = folder / REPORT_FILES[0]
+    if md.is_file():
+        text = md.read_text(encoding="utf-8")
+        if "type: memoff-memory-report" not in text:
+            errors.append(f"{folder.name}/{REPORT_FILES[0]}: not a memoff-memory-report file (front matter missing)")
+        if SECRET_RE.search(text):
+            errors.append(f"{folder.name}/{REPORT_FILES[0]}: looks like it contains a secret")
+    js = folder / REPORT_FILES[1]
+    if js.is_file():
+        try:
+            data = json.loads(js.read_text(encoding="utf-8"))
+            if not isinstance(data, dict) or data.get("type") != "memoff-memory-report":
+                errors.append(f"{folder.name}/{REPORT_FILES[1]}: JSON must carry type = memoff-memory-report")
+        except json.JSONDecodeError as exc:
+            errors.append(f"{folder.name}/{REPORT_FILES[1]}: invalid JSON ({exc})")
+    return errors
+
+
 def check_folder(folder: Path, hackathon_dir: Path) -> list[str]:
     errors = []
     sub = folder / "SUBMISSION.md"
@@ -109,6 +137,7 @@ def check_folder(folder: Path, hackathon_dir: Path) -> list[str]:
             rel = data.get(key)
             if rel and not (folder / rel).is_file():
                 errors.append(f"{folder.name}/memory.yml: {key} -> {rel} missing")
+        errors += check_report(folder)
     if track2:
         known = {int(p.name[:2]) for p in (hackathon_dir / "challenge" / "issues").glob("[0-9][0-9]-*.md")}
         proposals = list((folder / "issues").glob("*/ISSUE_PROPOSAL.md"))

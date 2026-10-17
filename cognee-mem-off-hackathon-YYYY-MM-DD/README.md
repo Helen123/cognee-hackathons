@@ -20,7 +20,10 @@ claude plugin marketplace add topoteretes/cognee-integrations
 claude plugin install cognee-memory@cognee          # brings the cognee-report observation skill
 cd harness && uv venv && uv pip install -e ".[dev]" # the Mem Off harness
 memoff pilot --smoke --issue 1 --repetitions 2 \
-  --xitkit-source /path/to/xitkit --out /tmp/memoff-smoke   # proves the harness runs on your machine
+  --xitkit-source /path/to/xitkit --out memoff-runs/smoke   # proves the harness runs on your machine
+sh skills/memoff-memory-report/install.sh --event "Mem Off <date>" --team <team-slug>
+                                                    # the reporting skill: your agent keeps memoff-report.md/.json
+                                                    # current from tool output; submitted with the results
 ```
 
 The smoke run calls no model. Its numbers prove orchestration, never a memory effect.
@@ -174,4 +177,4 @@ root, or committed `.env.example`; a CI check now refuses those. Rules and the e
 
 - [Cognee on GitHub](https://github.com/topoteretes/cognee) · [Documentation](https://docs.cognee.ai/) · [Discord](https://discord.gg/NQPKmU5CCg)
 - [claude-mem](https://github.com/thedotmack/claude-mem) · [HelixDB](https://github.com/HelixDB/helix-db) · [xitkit](https://github.com/hoechstleistungshaartrockner/xitkit)
-- The `cognee-hackathon-feedback` agent skill is installed in this folder: your coding agent keeps a private record of how cognee behaved for you. Hand `cognee-feedback.md` to the organisers at the end.
+- Two agent skills are installed in this folder (and installable into your own repo with one command each): `memoff-memory-report` keeps `memoff-report.md` / `.json` current from tool output and copies them into your submission at wrap-up; `cognee-hackathon-feedback` keeps a private record of how cognee behaved for you, which you hand to the organisers separately.

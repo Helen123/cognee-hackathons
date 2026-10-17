@@ -41,6 +41,15 @@ From `results/injected/issue-08/` and `results/receipts/issue-08.json`, after th
 attach them: what was recalled on issue 8, why it was selected over what was not, and why it
 helped (or did not). Quote the dump, not the chat.
 
+## Memory report
+
+Produced by the `memoff-memory-report` skill (install: `skills/memoff-memory-report/install.sh
+--event "<event>" --team <team-slug>`; its wrap-up copies the files here). Required for Track 1.
+
+- `report/memoff-report.md` and `report/memoff-report.json` present: yes / no
+- Runs recorded (count, of which smoke):
+- The one number you would show a judge, and the run folder it comes from:
+
 ## Reproduction
 
 ```bash
