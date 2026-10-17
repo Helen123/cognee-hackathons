@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "kind": "controlled_outcomes",
+  "recall_budget_seconds": 45,
+  "matched_blocks": 4,
+  "incomplete_blocks": [],
+  "repeated": true,
+  "variants": {
+    "no_memory": {
+      "trials": 4,
+      "failures": 0,
+      "task_success_rate": 0.0,
+      "citation_correctness": null,
+      "citations": 0,
+      "citation_coverage": 0.0,
+      "false_memory_adoption_rate": 0.0,
+      "total_tokens": 0,
+      "total_cost_usd": 0,
+      "usage_complete_trials": 4,
+      "latency_p50_ms": 3575.2228119963547,
+      "latency_p95_ms": 4397.439401733573,
+      "recall_p50_ms": 0.0,
+      "recall_p95_ms": 0.0,
+      "token_bases": [
+        "no_model_smoke"
+      ],
+      "cost_bases": [
+        "no_model_smoke"
+      ]
+    },
+    "cognee": {
+      "trials": 4,
+      "failures": 0,
+      "task_success_rate": 0.0,
+      "citation_correctness": null,
+      "citations": 0,
+      "citation_coverage": 0.0,
+      "false_memory_adoption_rate": 0.0,
+      "total_tokens": 0,
+      "total_cost_usd": 0,
+      "usage_complete_trials": 4,
+      "latency_p50_ms": 3568.6216875037644,
+      "latency_p95_ms": 4148.245850022067,
+      "recall_p50_ms": 0.0,
+      "recall_p95_ms": 0.0,
+      "token_bases": [
+        "no_model_smoke"
+      ],
+      "cost_bases": [
+        "no_model_smoke"
+      ]
+    }
+  },
+  "paired": {
+    "cognee_vs_no_memory": {
+      "baseline": "no_memory",
+      "pairs": 4,
+      "wins": 0,
+      "losses": 0,
+      "ties": 4,
+      "task_success_delta": 0.0
+    }
+  },
+  "by_case": {
+    "issue-01": {
+      "no_memory": {
+        "trials": 2,
+        "failures": 0,
+        "task_success_rate": 0.0,
+        "citation_correctness": null,
+        "citations": 0,
+        "citation_coverage": 0.0,
+        "false_memory_adoption_rate": 0.0,
+        "total_tokens": 0,
+        "total_cost_usd": 0,
+        "usage_complete_trials": 2,
+        "latency_p50_ms": 4294.589145487407,
+        "latency_p95_ms": 4426.825189232477,
+        "recall_p50_ms": 0.0,
+        "recall_p95_ms": 0.0,
+        "token_bases": [
+          "no_model_smoke"
+        ],
+        "cost_bases": [
+          "no_model_smoke"
+        ]
+      },
+      "cognee": {
+        "trials": 2,
+        "failures": 0,
+        "task_success_rate": 0.0,
+        "citation_correctness": null,
+        "citations": 0,
+        "citation_coverage": 0.0,
+        "false_memory_adoption_rate": 0.0,
+        "total_tokens": 0,
+        "total_cost_usd": 0,
+        "usage_complete_trials": 2,
+        "latency_p50_ms": 4145.9888750105165,
+        "latency_p95_ms": 4148.890700025368,
+        "recall_p50_ms": 0.0,
+        "recall_p95_ms": 0.0,
+        "token_bases": [
+          "no_model_smoke"
+        ],
+        "cost_bases": [
+          "no_model_smoke"
+        ]
+      }
+    },
+    "issue-02": {
+      "no_memory": {
+        "trials": 2,
+        "failures": 0,
+        "task_success_rate": 0.0,
+        "citation_correctness": null,
+        "citations": 0,
+        "citation_coverage": 0.0,
+        "false_memory_adoption_rate": 0.0,
+        "total_tokens": 0,
+        "total_cost_usd": 0,
+        "usage_complete_trials": 2,
+        "latency_p50_ms": 2983.0108120077057,
+        "latency_p95_ms": 3000.8079556006123,
+        "recall_p50_ms": 0.0,
+        "recall_p95_ms": 0.0,
+        "token_bases": [
+          "no_model_smoke"
+        ],
+        "cost_bases": [
+          "no_model_smoke"
+        ]
+      },
+      "cognee": {
+        "trials": 2,
+        "failures": 0,
+        "task_success_rate": 0.0,
+        "citation_correctness": null,
+        "citations": 0,
+        "citation_coverage": 0.0,
+        "false_memory_adoption_rate": 0.0,
+        "total_tokens": 0,
+        "total_cost_usd": 0,
+        "usage_complete_trials": 2,
+        "latency_p50_ms": 2977.1844375063665,
+        "latency_p95_ms": 2992.749318762799,
+        "recall_p50_ms": 0.0,
+        "recall_p95_ms": 0.0,
+        "token_bases": [
+          "no_model_smoke"
+        ],
+        "cost_bases": [
+          "no_model_smoke"
+        ]
+      }
+    }
+  },
+  "note": "Task assertions and citation oracles are fixture-defined. Smoke runners validate the harness, not model quality. Null cost/tokens mean unmeasured; reported/estimated usage is not an invoice. Small samples are descriptive, not evidence of statistical significance."
+}

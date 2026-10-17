@@ -1,0 +1,30 @@
+# Mem Off arm: cognee Claude Code plugin (local mode).
+# STATUS: draft pending workstream C1 — pin `version` and validate wipe/wait on the runner.
+name: cognee
+display_name: cognee memory plugin for Claude Code
+version: "cognee-memory@cognee <PIN RELEASE TAG>"
+repository: https://github.com/topoteretes/cognee-integrations
+agent: claude-code
+hooks: [SessionStart, UserPromptSubmit, PostToolUse, Stop, SessionEnd, mcp, skills]
+plugin_dirs: []            # marketplace install; nothing passed to --plugin-dir
+install: install.sh
+wipe: wipe.sh
+wipe_check: wipe_check.sh
+wait: wait.sh
+preindex: true
+preindex_script: preindex.sh
+receipt: receipt.sh
+usage: usage.sh
+storage: "~/.cognee-plugin (local cognee server on localhost:8011; LanceDB + Ladybug under the plugin venv)"
+network:
+  - "https://api.openai.com (or the LLM_PROVIDER endpoint in ~/.cognee/.env) — graph extraction + embeddings"
+  - "https://raw.githubusercontent.com — marketplace.json update check (disable with COGNEE_UPDATE_CHECK=off)"
+llm:
+  provider: openai
+  model: "<LLM_MODEL from ~/.cognee/.env>"
+  embedding_model: "<EMBEDDING_MODEL from ~/.cognee/.env>"
+notes: >
+  The plugin reads COGNEE_PLUGIN_DATASET for its dataset and COGNEE_SESSION_ID for the session
+  (both set by the sequencer per issue), so one Mem Off run = one dataset and eight sessions.
+  Injected context: the plugin's hook writes what it injects to MEMOFF_INJECTED_DIR when that
+  variable is set (to be added in C1; until then injected_chars reads 0 for this arm).

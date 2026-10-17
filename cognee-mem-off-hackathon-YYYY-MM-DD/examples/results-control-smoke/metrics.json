@@ -1,0 +1,427 @@
+{
+  "kind": "memoff_metrics",
+  "model": "claude-sonnet-5-5",
+  "xitkit": {
+    "repo": "https://github.com/hoechstleistungshaartrockner/xitkit.git",
+    "revision": "2fd55de4d3d7e49f10b92eadec252cfc40688dab"
+  },
+  "arms": {
+    "no_memory": {
+      "all_pass": false,
+      "issues": {
+        "issue-01": {
+          "repeats": 2,
+          "pass_rate": 0.0,
+          "turns": null,
+          "input_tokens": null,
+          "output_tokens": null,
+          "cache_read_input_tokens": null,
+          "cache_creation_input_tokens": null,
+          "agent_cost_usd": null,
+          "memory_cost_usd": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          },
+          "total_cost_usd": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          },
+          "total_tokens": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          },
+          "agent_duration_ms": null,
+          "elapsed_ms": {
+            "median": 4294.589145487407,
+            "min": 4147.660207992885,
+            "max": 4441.518082981929,
+            "n": 2
+          },
+          "wait_ms": {
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "n": 2
+          },
+          "injected_chars": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          },
+          "changed_files": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          }
+        },
+        "issue-02": {
+          "repeats": 2,
+          "pass_rate": 0.0,
+          "turns": null,
+          "input_tokens": null,
+          "output_tokens": null,
+          "cache_read_input_tokens": null,
+          "cache_creation_input_tokens": null,
+          "agent_cost_usd": null,
+          "memory_cost_usd": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          },
+          "total_cost_usd": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          },
+          "total_tokens": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          },
+          "agent_duration_ms": null,
+          "elapsed_ms": {
+            "median": 2983.0108120077057,
+            "min": 2963.236208015587,
+            "max": 3002.785415999824,
+            "n": 2
+          },
+          "wait_ms": {
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "n": 2
+          },
+          "injected_chars": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          },
+          "changed_files": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          }
+        }
+      },
+      "cumulative": {
+        "turns": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "input_tokens": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "output_tokens": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "cache_read_input_tokens": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "cache_creation_input_tokens": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "agent_cost_usd": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "memory_cost_usd": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "total_cost_usd": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "total_tokens": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "agent_duration_ms": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "elapsed_ms": {
+          "median": 7277.599957495113,
+          "min": 7110.896416008472,
+          "max": 7444.303498981753,
+          "n": 2
+        },
+        "wait_ms": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "injected_chars": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "changed_files": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        }
+      },
+      "linked_issues_cost": {
+        "median": 0.0,
+        "min": 0,
+        "max": 0,
+        "n": 2
+      },
+      "relative_to_control": {
+        "total_cost_usd": null,
+        "turns": null,
+        "total_tokens": null
+      }
+    },
+    "cognee": {
+      "all_pass": false,
+      "issues": {
+        "issue-01": {
+          "repeats": 2,
+          "pass_rate": 0.0,
+          "turns": null,
+          "input_tokens": null,
+          "output_tokens": null,
+          "cache_read_input_tokens": null,
+          "cache_creation_input_tokens": null,
+          "agent_cost_usd": null,
+          "memory_cost_usd": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          },
+          "total_cost_usd": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          },
+          "total_tokens": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          },
+          "agent_duration_ms": null,
+          "elapsed_ms": {
+            "median": 4145.9888750105165,
+            "min": 4142.764624994015,
+            "max": 4149.213125027018,
+            "n": 2
+          },
+          "wait_ms": {
+            "median": 3.802521008765325,
+            "min": 3.7632500170730054,
+            "max": 3.8417920004576445,
+            "n": 2
+          },
+          "injected_chars": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          },
+          "changed_files": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          }
+        },
+        "issue-02": {
+          "repeats": 2,
+          "pass_rate": 0.0,
+          "turns": null,
+          "input_tokens": null,
+          "output_tokens": null,
+          "cache_read_input_tokens": null,
+          "cache_creation_input_tokens": null,
+          "agent_cost_usd": null,
+          "memory_cost_usd": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          },
+          "total_cost_usd": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          },
+          "total_tokens": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          },
+          "agent_duration_ms": null,
+          "elapsed_ms": {
+            "median": 2977.1844375063665,
+            "min": 2959.8901249992196,
+            "max": 2994.4787500135135,
+            "n": 2
+          },
+          "wait_ms": {
+            "median": 3.6409169988473877,
+            "min": 3.566667000995949,
+            "max": 3.7151669966988266,
+            "n": 2
+          },
+          "injected_chars": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          },
+          "changed_files": {
+            "median": 0.0,
+            "min": 0,
+            "max": 0,
+            "n": 2
+          }
+        }
+      },
+      "cumulative": {
+        "turns": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "input_tokens": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "output_tokens": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "cache_read_input_tokens": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "cache_creation_input_tokens": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "agent_cost_usd": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "memory_cost_usd": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "total_cost_usd": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "total_tokens": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "agent_duration_ms": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "elapsed_ms": {
+          "median": 7123.173312516883,
+          "min": 7109.103250026237,
+          "max": 7137.243375007529,
+          "n": 2
+        },
+        "wait_ms": {
+          "median": 7.443438007612713,
+          "min": 7.408459001453593,
+          "max": 7.478417013771832,
+          "n": 2
+        },
+        "injected_chars": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        },
+        "changed_files": {
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "n": 2
+        }
+      },
+      "linked_issues_cost": {
+        "median": 0.0,
+        "min": 0,
+        "max": 0,
+        "n": 2
+      },
+      "relative_to_control": {
+        "total_cost_usd": null,
+        "turns": null,
+        "total_tokens": null
+      }
+    }
+  },
+  "note": "Medians over repeats; cost is the agent's plus the memory system's reported spend; null means unmeasured, never zero."
+}

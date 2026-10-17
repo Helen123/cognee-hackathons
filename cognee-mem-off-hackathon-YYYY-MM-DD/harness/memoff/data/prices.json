@@ -1,0 +1,9 @@
+{
+  "note": "USD per million tokens. Used only when the CLI reports no total_cost_usd. Pin and publish this sheet with the frozen benchmark; mark the leaderboard 'configured_rates' when it is used.",
+  "pinned_on": "YYYY-MM-DD",
+  "models": {
+    "claude-sonnet-5-5": {"input_usd_per_million": 3.0, "output_usd_per_million": 15.0, "cache_read_usd_per_million": 0.3, "cache_write_usd_per_million": 3.75},
+    "claude-opus-5-5": {"input_usd_per_million": 15.0, "output_usd_per_million": 75.0, "cache_read_usd_per_million": 1.5, "cache_write_usd_per_million": 18.75},
+    "claude-haiku-5-5": {"input_usd_per_million": 1.0, "output_usd_per_million": 5.0, "cache_read_usd_per_million": 0.1, "cache_write_usd_per_million": 1.25}
+  }
+}
