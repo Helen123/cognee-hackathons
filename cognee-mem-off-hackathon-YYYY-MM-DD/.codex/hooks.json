@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh .agents/skills/cognee-hackathon-feedback/hook.sh",
+            "timeout": 10,
+            "statusMessage": "cognee feedback checkpoint"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh .agents/skills/memoff-memory-report/hook.sh",
+            "timeout": 15,
+            "statusMessage": "memoff report checkpoint"
+          }
+        ]
+      }
+    ]
+  }
+}

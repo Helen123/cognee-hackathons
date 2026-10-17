@@ -1,0 +1,13 @@
+name: cognee
+display_name: no-op fixture arm (tests only)
+version: "0"
+hooks: [none]
+install: noop.sh
+wipe: noop.sh
+wait: noop.sh
+receipt: receipt.sh
+usage: usage.sh
+preindex: false
+storage: none
+network: []
+llm: {provider: none, model: none}

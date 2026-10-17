@@ -1,0 +1,39 @@
+name: Mem Off submission check
+
+on:
+  pull_request:
+    paths:
+      - "cognee-mem-off-hackathon-*/submissions/**"
+      - "cognee-mem-off-hackathon-*/harness/**"
+      - "cognee-mem-off-hackathon-*/skills/**"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Locate the Mem Off folder
+        id: hack
+        run: echo "dir=$(ls -d cognee-mem-off-hackathon-*/ | head -1 | sed 's#/$##')" >> "$GITHUB_OUTPUT"
+      - name: Install the harness
+        run: pip install -e "${{ steps.hack.outputs.dir }}/harness[dev]"
+      - name: Harness unit tests
+        run: python -m pytest -q "${{ steps.hack.outputs.dir }}/harness/tests"
+      - name: Is this a submission PR?
+        id: kind
+        run: |
+          git fetch origin "${{ github.base_ref }}" --depth=1
+          if git diff --name-only "origin/${{ github.base_ref }}...HEAD" | grep -q "^${{ steps.hack.outputs.dir }}/submissions/[^/]*/"; then
+            echo "submission=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "submission=false" >> "$GITHUB_OUTPUT"
+            echo "No team folder under submissions/ changed: organiser PR, submission rules skipped."
+          fi
+      - name: Submission rules
+        if: steps.kind.outputs.submission == 'true'
+        run: memoff check-submission --hackathon-dir "${{ steps.hack.outputs.dir }}" --base "origin/${{ github.base_ref }}"

@@ -1,0 +1,30 @@
+{
+  "type": "memoff-memory-report",
+  "event": "Mem Off (example — synthetic, from a smoke run)",
+  "team": "example-team",
+  "system": "none / control (smoke)",
+  "agent": "claude-code",
+  "cognee_plugin": null,
+  "first_green_run": null,
+  "runs": [
+    {
+      "time": "08:36",
+      "command": "memoff run --smoke --only 1 2",
+      "out_dir": "memoff-runs/smoke",
+      "arms": ["no_memory", "cognee"],
+      "issues": [1, 2],
+      "repeats": 2,
+      "all_pass": false,
+      "median_cost_usd": 0.0,
+      "cost_basis": "no_model_smoke",
+      "turns_median": null,
+      "injected_chars_median": 0,
+      "smoke": true
+    }
+  ],
+  "scorecard": null,
+  "recall_observations": [],
+  "costs": {"agent_usd": null, "memory_usd": 0.0, "memory_cost_basis": "no_model_smoke"},
+  "did_not_work": ["injected dumps empty: the no-op fixture arm writes nothing to MEMOFF_INJECTED_DIR"],
+  "summary": "Smoke run only: pipeline proven, no memory effect claimed."
+}

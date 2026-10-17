@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Mem Off entrant manifest (memory.yml)",
+  "type": "object",
+  "required": ["name", "version", "hooks", "install", "wipe", "wait", "storage", "network", "preindex", "llm"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{1,40}$", "description": "Arm/variant name. `no_memory` and `cognee` are reserved for the control and cognee arms."},
+    "display_name": {"type": "string"},
+    "version": {"type": "string", "description": "Release tag or commit of the memory system that is run."},
+    "repository": {"type": "string", "format": "uri"},
+    "agent": {"type": "string", "enum": ["claude-code"], "default": "claude-code"},
+    "hooks": {
+      "type": "array",
+      "items": {"type": "string", "enum": ["SessionStart", "UserPromptSubmit", "PostToolUse", "Stop", "SessionEnd", "PreCompact", "mcp", "skills", "none"]},
+      "uniqueItems": true
+    },
+    "plugin_dirs": {"type": "array", "items": {"type": "string"}, "description": "Directories passed to `claude --plugin-dir`, relative to the submission folder. Empty for marketplace-installed plugins."},
+    "install": {"type": "string", "description": "Script, relative to the submission folder, that installs the system on a clean Linux container."},
+    "wipe": {"type": "string", "description": "Script that empties the memory store. The runner verifies emptiness via `wipe_check` when given."},
+    "wipe_check": {"type": "string", "description": "Optional script that exits non-zero when the store is not empty."},
+    "wait": {"type": "string", "description": "Script that blocks until post-session processing is done; non-zero on timeout."},
+    "preindex": {"type": "boolean", "description": "Whether the system indexes the repository before issue 1 (`preindex.sh` must then exist)."},
+    "preindex_script": {"type": "string"},
+    "receipt": {"type": "string", "description": "Optional script that prints a JSON injection receipt for the last session (what was injected and why)."},
+    "usage": {"type": "string", "description": "Optional script that prints JSON usage records (source=server) for the memory system's own model/embedding spend since the last call."},
+    "storage": {"type": "string", "description": "Where the store lives (path or service)."},
+    "network": {"type": "array", "items": {"type": "string"}, "description": "Every endpoint the system contacts. Empty means fully local."},
+    "llm": {
+      "type": "object",
+      "required": ["provider", "model"],
+      "properties": {"provider": {"type": "string"}, "model": {"type": "string"}, "embedding_model": {"type": "string"}},
+      "description": "Model(s) the memory system itself calls, or provider `none`."
+    },
+    "notes": {"type": "string"}
+  }
+}

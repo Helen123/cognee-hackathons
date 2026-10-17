@@ -1,0 +1,24 @@
+# Mem Off arm: claude-mem (thedotmack/claude-mem).
+# STATUS: draft pending workstream C2 — pin `version`, confirm the worker queue-drain check in wait.sh,
+# and have the maintainer review the default config for fairness.
+name: claude-mem
+display_name: claude-mem
+version: "<PIN RELEASE, e.g. v13.x>"
+repository: https://github.com/thedotmack/claude-mem
+agent: claude-code
+hooks: [SessionStart, UserPromptSubmit, PostToolUse, Stop, SessionEnd, mcp]
+plugin_dirs: []
+install: install.sh
+wipe: wipe.sh
+wait: wait.sh
+preindex: false
+storage: "~/.claude-mem/claude-mem.db (SQLite + FTS5; optional Chroma index)"
+network:
+  - "observer model provider configured in claude-mem settings (Claude SDK by default)"
+llm:
+  provider: anthropic
+  model: "<observer model from claude-mem settings>"
+notes: >
+  Default settings: CLAUDE_MEM_REINFORCE_ALPHA unset (recency ranking) and the 10,000-character
+  SessionStart budget. Injected context: claude-mem writes its SessionStart block to stdout for
+  Claude Code; a wrapper hook copies that block to MEMOFF_INJECTED_DIR (to be added in C2).

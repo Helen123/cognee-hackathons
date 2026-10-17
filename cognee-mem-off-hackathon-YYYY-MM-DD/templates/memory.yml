@@ -1,0 +1,31 @@
+# Mem Off entrant manifest. Validates against harness/memoff/memory.schema.json.
+# Copy to submissions/<team-slug>/memory.yml. Paths are relative to that folder.
+
+name: my-memory                 # lowercase; `no_memory` and `cognee` are reserved
+display_name: My Memory System
+version: "v1.2.3 or commit sha"  # what the harness runs; pin it
+repository: https://github.com/you/my-memory
+agent: claude-code
+
+hooks: [SessionStart, UserPromptSubmit, PostToolUse, Stop, SessionEnd]   # add `mcp` / `skills` if used
+plugin_dirs: []                 # e.g. ["plugin"] for a bundle in this folder; empty for a marketplace install
+
+install: install.sh             # clean Linux container, idempotent
+wipe: wipe.sh                   # empties the store for $MEMOFF_MEMORY_STORE
+wipe_check: wipe_check.sh       # optional: exit non-zero when the store is not empty
+wait: wait.sh                   # blocks until post-session processing is done; non-zero on timeout
+preindex: false                 # true → preindex_script runs before issue 1 (timed separately)
+# preindex_script: preindex.sh
+receipt: receipt.sh             # optional: JSON injection receipt for $MEMOFF_SESSION_ID (no bodies)
+usage: usage.sh                 # optional: JSON usage records for your system's own model/embedding spend
+
+storage: "~/.my-memory/store.db"
+network:                        # every endpoint the system contacts; [] means fully local
+  - "https://api.example.com — observer model"
+llm:
+  provider: anthropic           # or `none`
+  model: claude-haiku-5-5
+  embedding_model: none
+notes: >
+  Anything the organisers must know to run it fairly. Default settings are expected;
+  explain every deviation.

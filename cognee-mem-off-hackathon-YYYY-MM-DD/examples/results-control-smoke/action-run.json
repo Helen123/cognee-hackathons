@@ -1,0 +1,31 @@
+{
+  "harness": "memoff 0.1.0",
+  "schema": 1,
+  "started_at": "2026-10-17T08:32:08-0700",
+  "model": "claude-sonnet-5-5",
+  "max_tokens": 8192,
+  "repeats": 2,
+  "seed": 42,
+  "arms": {
+    "no_memory": {
+      "version": "n/a",
+      "folder": "/benchmark/harness/memoff/data"
+    },
+    "cognee": {
+      "version": "0",
+      "folder": "/benchmark/harness/tests/fixtures/arm-noop"
+    }
+  },
+  "xitkit": {
+    "repo": "https://github.com/hoechstleistungshaartrockner/xitkit.git",
+    "revision": "2fd55de4d3d7e49f10b92eadec252cfc40688dab"
+  },
+  "issues": [
+    "issue-01",
+    "issue-02"
+  ],
+  "smoke": true,
+  "claude_code": "2.1.302 (Claude Code)",
+  "private_graders": false,
+  "finished_at": "2026-10-17T08:32:40-0700"
+}

@@ -21,6 +21,7 @@ that learn, remember, and improve over time.
 | 2026-06-19 | Cognee Cloud Hackathon: Build Your Company Brain | — | [`cognee-cloud-hackathon-2026-06-19`](./cognee-cloud-hackathon-2026-06-19) |
 | 2026-06-26 | Cognee GTM Brain (Warsaw): Merge Accounts, Deals & Conversations into One Graph | modelguide | [`cognee-gtm-brain-hackathon-2026-06-26`](./cognee-gtm-brain-hackathon-2026-06-26) |
 | 2026-10-07 | Build a Company Brain (SF Tech Week): AI Agents with Memory, Context and Secure Access | Scalekit (access + code), Respan (LLM gateway credits + evals) | [`cognee-companybrain-scalekit-respan-hackathon-2026-10-07`](./cognee-companybrain-scalekit-respan-hackathon-2026-10-07) |
+| TBD (YYYY-MM-DD) | Mem Off: claude-mem × cognee × HelixDB on a frozen eight-issue coding benchmark, plus bring-your-own-memory and extend-the-benchmark tracks | claude-mem, HelixDB | [`cognee-mem-off-hackathon-YYYY-MM-DD`](./cognee-mem-off-hackathon-YYYY-MM-DD) |
 
 ## Repository Layout
 
